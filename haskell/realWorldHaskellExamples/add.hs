@@ -1,9 +1,10 @@
-import Add (sumList)
-add a b = a + b
+-- | add from chapter 3 page 47
+
+module Add  where
 
 
-myNot False = True
 myNot True = False
+myNot False = True
 
 sumList (x:xs) = x + sumList xs
 sumList []     = 0
