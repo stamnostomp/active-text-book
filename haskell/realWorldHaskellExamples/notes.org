@@ -13,3 +13,10 @@
 [[file:add.hs][pattering machinf file]]
 
 #+INCLUDE: "./add.hs"
+
+
+* maybe types
+
+the maybe type is a value constructor that takes a type as the paramiter that creates a distinct type
+
+eg Just "something" the type is Just -> a where a is the type of the paramiter you could describe it as Just -> String
