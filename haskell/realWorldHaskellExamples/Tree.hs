@@ -17,3 +17,9 @@ simpleTree2 =
     "test with mix types"
     (Node 23 Empty Empty)
     (Node 43 Empty Empty)
+
+safeTree =
+  Node
+    a
+    (Tree (Maybe a))
+    (Tree (Maybe a))
