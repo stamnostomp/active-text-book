@@ -51,3 +51,51 @@ joinLOL :: [a] -> [[a]] -> [a]
 joinLOL _ [] = []
 joinLOL _ [x] = x
 joinLOL sep (x : xs) = x ++ sep ++ joinLOL sep xs
+
+{-
+8. Using the binary tree type that we defined earlier in this chapter, write a function that will determine
+the height of the tree. The height is the largest number of hops from the root to an Empty. For example,
+the tree Empty has height zero; Node "x" Empty Empty has height one; Node "x" Empty (Node "y"
+Empty Empty) has height two; and so on.
+-}
+
+data Tree a
+  = Node a (Tree a) (Tree a)
+  | Empty
+  deriving (Show)
+
+findHight :: Tree a -> Int
+findHight Empty = 0
+findHight (Node _ left right) = 1 + max (findHight left) (findHight right)
+
+{-
+9. Consider three two-dimensional points a, b, and c. If we look at the angle formed by the line segment
+from a to b and the line segment from b to c, it either turns left, turns right, or forms a straight line.
+Define a Direction data type that lets you represent these possibilities.
+-}
+
+data Direction
+  = TurnLeft
+  | TurnRight
+  | GoStraight
+  deriving (Show)
+
+type Point2D = (Double, Double)
+
+{-
+10. Write a function that calculates the turn made by three 2D points and returns a Direction.
+-}
+
+calcTurn :: Point2D -> Point2D -> Point2D -> Direction
+calcTurn (x1, y1) (x2, y2) (x3, y3) = case compare area 0 of
+  LT -> TurnRight
+  EQ -> GoStraight
+  GT -> TurnLeft
+  where
+    area = (x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1)
+
+{-
+12. Using the code from the preceding three exercises, implement Graham’s scan algorithm for the
+convex hull of a set of 2D points. You can find good description of what a convex hull2. is, and how the
+Graham scan algorithm3 should work, on Wikipedia4.
+-}
